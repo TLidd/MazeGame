@@ -34,20 +34,27 @@ public class WallScript : MonoBehaviour {
     void OnMouseDown() {
         if (!isOuterWall) {
             if (isUp) {
-                StopCoroutine(movement);
-                movement = MoveDown();
-                StartCoroutine(movement);
-                isUp = false;
-                GetComponent<Renderer>().material.color = Color.green;
+                SetMoveDown();
             } else if (!isUp) {
-                StopCoroutine(movement);
-                StopCoroutine(movement);
-                movement = MoveUp();
-                StartCoroutine(movement);
-                isUp = true;
-                GetComponent<Renderer>().material.color = Color.red;
+                SetMoveUp();
             }
         }
+    }
+
+    public void SetMoveUp() {
+        StopCoroutine(movement);
+        movement = MoveUp();
+        StartCoroutine(movement);
+        isUp = true;
+        GetComponent<Renderer>().material.color = Color.red;
+    }
+
+    public void SetMoveDown() {
+        StopCoroutine(movement);
+        movement = MoveDown();
+        StartCoroutine(movement);
+        isUp = false;
+        GetComponent<Renderer>().material.color = Color.green;
     }
 
     //Move wall to top
