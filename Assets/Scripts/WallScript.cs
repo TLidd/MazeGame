@@ -15,7 +15,7 @@ public class WallScript : MonoBehaviour {
     void Start() {
         //Get walls into correct position
         if (isUp) {
-            GetComponent<Renderer>().material.color = Color.red;
+            GetComponent<Renderer>().material.color = Color.white;
             movement = MoveUp();
             StartCoroutine(movement);
         } else {
@@ -46,7 +46,7 @@ public class WallScript : MonoBehaviour {
         movement = MoveUp();
         StartCoroutine(movement);
         isUp = true;
-        GetComponent<Renderer>().material.color = Color.red;
+        GetComponent<Renderer>().material.color = Color.white;
     }
 
     public void SetMoveDown() {
