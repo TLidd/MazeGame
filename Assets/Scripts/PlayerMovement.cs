@@ -9,22 +9,23 @@ public class PlayerMovement : MonoBehaviour
     //VERTICAL MOVEMENT
     public float jumpHeight;
     public float timeToReachApex;
-    public float jumpVelocity;
-    public float gravity;
-    public float acceleration;
-
+    private float jumpVelocity;
+    private float gravity;
+    private Vector3 jumpVector;
 
     //HORIZONTAL MOVEMENT
-    public float xVelocity;
-    public float yVelocity;
-    public Vector3 xVector;
-    public Vector3 yVector;
+    private float xVelocity;
+    private float yVelocity;
     public float speedModifier;
-    public float maxSpeed;
+    private Vector3 movementVector;
 
-    public bool isGrounded;
 
-    public Rigidbody myRB;
+    private bool isGrounded;
+    public Transform groundChecker;
+    public LayerMask groundLayer;
+    public float groundCheckerRadius;
+
+    public CharacterController controller;
     bool jump = false;
     // Start is called before the first frame update
     void Start()
@@ -32,49 +33,53 @@ public class PlayerMovement : MonoBehaviour
         InitializeGravity();
         InitializeVelocity();
 
-        myRB = GetComponent<Rigidbody>();
+        controller = gameObject.GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
     {
         HorizontalMovement();
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if(Physics.CheckSphere(groundChecker.transform.position, groundCheckerRadius, groundLayer))
+        {
+            isGrounded = true;
+            jumpVector.y = -2;
+        }
+        else
+        {
+            isGrounded = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && jumpVector.y < 0 )
         {
             jump = true;
+
         }
        
     }
 
     private void FixedUpdate()
     {
+        jumpVector.y += gravity * Time.deltaTime;
+
+        controller.Move( movementVector *speedModifier * Time.deltaTime);
+
         if (jump)
         {
             Jump();
             jump = false;
         }
-        
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Ground")
-        {
-            speedModifier = 10f;
-            isGrounded = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        speedModifier = 5f;
-        isGrounded = false;
+        controller.Move(jumpVector * Time.deltaTime);
     }
 
 
     void HorizontalMovement()
     {
-        myRB.velocity = new Vector3(-Input.GetAxis("Horizontal") * speedModifier, myRB.velocity.y, -Input.GetAxis("Vertical") * speedModifier);
+        xVelocity = Input.GetAxis("Horizontal");
+        yVelocity = Input.GetAxis("Vertical");
+
+        movementVector = transform.right * xVelocity + transform.forward * yVelocity;
     }
 
     //Use a variaiton of the second equation of motion to calculate
@@ -88,12 +93,13 @@ public class PlayerMovement : MonoBehaviour
 
     void InitializeVelocity()
     {
-        jumpVelocity = Mathf.Abs(gravity * timeToReachApex);
+        //jumpVelocity = Mathf.Abs(gravity * timeToReachApex);
+        jumpVelocity = Mathf.Sqrt(jumpHeight * -2 * gravity);
     }
 
     void Jump()
     {
-        myRB.velocity = new Vector3(myRB.velocity.x, jumpVelocity, myRB.velocity.y);
+        jumpVector.y = jumpVelocity;
     }
 
 }

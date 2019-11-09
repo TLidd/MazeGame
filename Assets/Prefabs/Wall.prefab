@@ -109,5 +109,5 @@ MonoBehaviour:
   isUp: 1
   isOuterWall: 0
   moveSpeed: 0.5
-  top: 0.5
+  top: 1
   bottom: -0.475
