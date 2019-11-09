@@ -13,7 +13,11 @@ public class Key : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.collider.name);
-        wall.SetMoveDown();
+        if(collision.collider.name != "Plane")
+        {
+            Debug.Log("collided");
+            wall.SetMoveDown();
+            Destroy(this.gameObject);
+        }
     }
 }
