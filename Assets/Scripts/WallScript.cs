@@ -31,7 +31,7 @@ public class WallScript : MonoBehaviour {
     }
 
     //When wall is clicked on, move wall up or down
-    void OnMouseDown() {
+    /*void OnMouseDown() {
         if (!isOuterWall) {
             if (isUp) {
                 SetMoveDown();
@@ -39,7 +39,7 @@ public class WallScript : MonoBehaviour {
                 SetMoveUp();
             }
         }
-    }
+    }*/
 
     public void SetMoveUp() {
         StopCoroutine(movement);
