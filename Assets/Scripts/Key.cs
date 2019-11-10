@@ -20,4 +20,14 @@ public class Key : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name != "Plane" && other.gameObject.tag == "Player")
+        {
+            Debug.Log("collided");
+            wall.SetMoveDown();
+            Destroy(this.gameObject);
+        }
+    }
 }
