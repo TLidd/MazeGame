@@ -11,6 +11,7 @@ public class CameraController : MonoBehaviour
 
     public float sensitivity = 100f;
     public float finalYRot = 0;
+    public bool enableVerticalCamera;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +27,12 @@ public class CameraController : MonoBehaviour
         finalYRot -= yRot;
         finalYRot = Mathf.Clamp(finalYRot, -90, 90);
 
-        //using quaternion so we don't infinitely go past 90
-        transform.localRotation = Quaternion.Euler(finalYRot, 0, 0);
+        if (enableVerticalCamera)
+        {
+            //using quaternion so we don't infinitely go past 90
+            transform.localRotation = Quaternion.Euler(finalYRot, 0, 0);
+        }
+
 
         //X movement
         playerBody.Rotate(Vector3.up * xRot);
