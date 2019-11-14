@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 3362724688975564447}
   - component: {fileID: 6048838936021447849}
   - component: {fileID: 57776714395666512}
+  - component: {fileID: 6177035888298164015}
+  - component: {fileID: -1591147673245080685}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -78,3 +80,37 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &6177035888298164015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797382177043119244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a32e9a7cd26720044be91d81567ac407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holePrefab: {fileID: 4399568064937987671, guid: 6ec9585e0bcc1bf4d8f0be76ea207632,
+    type: 3}
+  spikePrefab: {fileID: 1487560872739712952, guid: 83ec822c0c740ad45b0e82ab7f0c9254,
+    type: 3}
+  pillarPrefab: {fileID: 5103824759980360436, guid: cb12afd60e0155c459398ca7b9a596dc,
+    type: 3}
+  guardian: {fileID: 0}
+  isActive: 1
+--- !u!64 &-1591147673245080685
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797382177043119244}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -5495902117074765545, guid: b679d2c3edbc6174f87dfef9aed19423, type: 3}

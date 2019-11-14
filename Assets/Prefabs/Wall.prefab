@@ -110,4 +110,5 @@ MonoBehaviour:
   isOuterWall: 0
   moveSpeed: 0.5
   top: 0.5
-  bottom: -1.25
+  bottom: -0.475
+  clickEnabled: 0

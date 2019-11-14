@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0.5
   bottom: -0.5
-  top: 0.5
+  top: 0.25
 --- !u!64 &1332695577203558503
 MeshCollider:
   m_ObjectHideFlags: 0

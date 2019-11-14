@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PillarScript : MonoBehaviour
+public class Spike : MonoBehaviour
 {
     public float moveSpeed = .5f;
     public float bottom = -.5f;
@@ -16,7 +16,6 @@ public class PillarScript : MonoBehaviour
         }
         movement = MoveUp();
         StartCoroutine(movement);
-        GetComponent<Renderer>().material.color = Color.white;
     }
 
     public void SetMoveDown() {
@@ -25,7 +24,6 @@ public class PillarScript : MonoBehaviour
         }
         movement = MoveDown();
         StartCoroutine(movement);
-        GetComponent<Renderer>().material.color = Color.green;
     }
 
     public IEnumerator MoveUp() {
