@@ -8,6 +8,7 @@ public class WallScript : MonoBehaviour {
     public float moveSpeed = .5f;
     public float top = .5f;
     public float bottom = -.475f;
+    public bool clickEnabled = false;
 
     private IEnumerator movement; //This holds the coroutine to handle the movement for the walls
     private GameObject Guardian; //Reference to the guardian object
@@ -31,7 +32,9 @@ public class WallScript : MonoBehaviour {
     }
 
     //When wall is clicked on, move wall up or down
-    /*void OnMouseDown() {
+    void OnMouseDown() {
+        if (!clickEnabled)
+            return;
         if (!isOuterWall) {
             if (isUp) {
                 SetMoveDown();
@@ -39,7 +42,7 @@ public class WallScript : MonoBehaviour {
                 SetMoveUp();
             }
         }
-    }*/
+    }
 
     public void SetMoveUp() {
         StopCoroutine(movement);
